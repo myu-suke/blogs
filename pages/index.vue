@@ -39,10 +39,10 @@
       </div>
     </section>
     <section
-      class="antialiased font-sans w-full bg-gray-300 text-left text-black py-8"
+      class="antialiased font-sans w-full bg-gray-300 text-left text-black pt-3 pb-8"
     >
       <div
-        class="container mx-auto max-w-xl py-8 font-normal leading-normal flex flex-col sm:flex-row"
+        class="container mx-auto max-w-xl py-3 font-normal leading-normal flex flex-col sm:flex-row"
       >
         <div
           class="w-full sm:w-3/4 px-6 sm:px-0 pt-6 text-left flex flex-col justify-center"
