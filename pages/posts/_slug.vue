@@ -29,15 +29,14 @@
             Tags:
           </div>
           <template v-for="tag in posts.tags">
-            <div
-              :key="tag"
-              class="mt-2 flex items-center text-sm text-gray-500 mr-3"
-            >
-              <span
-                class="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle"
-                >{{ tag }}</span
-              >
-            </div>
+            <router-link :key="tag" :to="'/tags/' + tag">
+              <div class="mt-2 flex items-center text-sm text-gray-500 mr-3">
+                <span
+                  class="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle"
+                  >{{ tag }}</span
+                >
+              </div>
+            </router-link>
           </template>
         </div>
       </div>
@@ -52,6 +51,15 @@ export default {
     const content = $content;
     const posts = await $content('posts', params.slug || 'index').fetch()
     return { posts ,params,content}
+  },
+  head () {
+    return {
+      title: this.posts.title + " | あることないこと",
+      meta: [
+        { hid: 'description', name: 'description', content: this.posts.description },
+        { hid: 'title', name: 'title', content: this.posts.title }
+      ]
+    }
   }
 }
 </script>

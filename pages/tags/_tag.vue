@@ -5,11 +5,11 @@
         <h1
           class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
         >
-          {{ $route.params.tag }}一覧
+          タグ：{{ $route.params.tag }}一覧
         </h1>
       </div>
       <div class="flex flex-wrap -m-4">
-        <template v-for="n in posts">
+        <template v-for="n in filterPost">
           <div :key="n.slug" class="lg:w-1/3 sm:w-1/2 p-4">
             <router-link :to="'/posts/' + n.slug">
               <div class="flex relative">
@@ -42,7 +42,24 @@ export default {
   async asyncData({ $content, params }) {
     const query = await $content('posts' || 'index').limit(15)
     const posts = await query.fetch()
-    return { posts }
+    const tag = params.tag === '' ? params.tag : 'all'
+
+    const filterPost =
+      tag !== 'all' ? posts : posts.filter((p) => p.tags.includes(tag))
+    return { filterPost }
+  },
+  head() {
+    return {
+      title: 'タグ一覧 | あることないこと',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: '技術メモや思ったことを記憶しておくブログ',
+        },
+        { hid: 'title', name: 'title', content: 'あることないこと' },
+      ],
+    }
   },
 }
 </script>

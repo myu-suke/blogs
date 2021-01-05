@@ -44,5 +44,18 @@ export default {
     const posts = await query.fetch()
     return { posts }
   },
+  head() {
+    return {
+      title: '記事一覧 | あることないこと',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: '技術メモや思ったことを記憶しておくブログ，記事一覧',
+        },
+        { hid: 'title', name: 'title', content: 'あることないこと' },
+      ],
+    }
+  },
 }
 </script>

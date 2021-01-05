@@ -22,7 +22,7 @@
         >
           <h2 class="capitalize font-medium">記事一覧</h2>
           <p class="text-gray-700 mt-2 mb-6">
-            技術メモが多いです．鵜呑みにせずにご覧ください！
+            技術メモ程度なので．鵜呑みにせずにご覧ください！
           </p>
         </div>
         <div
@@ -51,14 +51,21 @@
           <p class="">気になるタグを入力して検索</p>
           <div class="max-w-sm mt-4 sm:flex">
             <input
+              v-model="tag"
               type="text"
               class="block w-full focus:outline-0 bg-white py-3 px-6 mb-2 sm:mb-0"
               name="tags"
+              list="tag-list"
               placeholder="ex) javascript"
               required="false"
             />
+            <datalist id="tag-list">
+              <template v-for="t in tags">
+                <option :key="t">{{ t }}</option>
+              </template>
+            </datalist>
             <router-link
-              to="posts"
+              :to="'/tags/' + tag"
               tag="button"
               class="bg-black hover:bg-gray-900 text-white hover:text-white py-3 px-6 uppercase text-xs tracking-wide whitespace-nowrap"
             >
@@ -72,5 +79,32 @@
 </template>
 
 <script>
-export default {}
+export default {
+  async asyncData({ $content, params }) {
+    const query = await $content('posts' || 'index')
+    const posts = await query.fetch()
+    const tagsArray = posts.flatMap((n) => n.tags)
+    const tags = [...new Set(tagsArray)]
+    tags.sort()
+    return { tags }
+  },
+  data() {
+    return {
+      tag: '',
+    }
+  },
+  head() {
+    return {
+      title: 'あることないこと',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: '技術メモや思ったことを記憶しておくブログ',
+        },
+        { hid: 'title', name: 'title', content: 'あることないこと' },
+      ],
+    }
+  },
+}
 </script>
