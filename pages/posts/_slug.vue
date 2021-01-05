@@ -5,7 +5,7 @@
         <h1
           class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate"
         >
-          {{ news.title }}
+          {{ posts.title }}
         </h1>
         <div class="flex flex-row flex-wrap mt-0">
           <div class="mt-2 flex items-center text-sm text-gray-500 mr-5">
@@ -23,12 +23,12 @@
                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
-            {{ news.date }}
+            {{ posts.date }}
           </div>
           <div class="mt-2 flex items-center text-sm text-gray-500 mr-1">
             Tags:
           </div>
-          <template v-for="tag in news.tags">
+          <template v-for="tag in posts.tags">
             <div
               :key="tag"
               class="mt-2 flex items-center text-sm text-gray-500 mr-3"
@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <nuxt-content class="pt-3" :document="news" />
+    <nuxt-content class="pt-3" :document="posts" />
   </article>
 </template>
 
@@ -50,8 +50,8 @@
 export default {
   async asyncData({ $content, params }) {
     const content = $content;
-    const news = await $content('posts', params.slug || 'index').fetch()
-    return { news ,params,content}
+    const posts = await $content('posts', params.slug || 'index').fetch()
+    return { posts ,params,content}
   }
 }
 </script>

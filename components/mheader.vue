@@ -17,7 +17,7 @@
       </li>
       <li>
         <router-link
-          to="/posts"
+          to="/tags"
           class="inline-block py-2 px-3 text-gray-900 hover:text-gray-700 no-underline"
           >Tags</router-link
         >
