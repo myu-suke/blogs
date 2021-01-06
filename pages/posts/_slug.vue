@@ -41,16 +41,67 @@
         </div>
       </div>
     </div>
-    <nuxt-content class="pt-3" :document="posts" />
+    <div class="bg-gray-200 px-4 py-2 mt-3">
+      <h2 class="font-bold leading-7 text-gray-900 text-xl sm:truncate">
+        目次
+      </h2>
+      <ul class="list-inside list-disc">
+        <li
+          v-for="link of posts.toc"
+          :key="link.id"
+          :class="{ toc2: link.depth === 2, toc3: link.depth === 3 }"
+        >
+          <NuxtLink :to="`#${link.id}`">{{ link.text }}</NuxtLink>
+        </li>
+      </ul>
+    </div>
+    <nuxt-content class="pt-1" :document="posts" />
+    <div
+      class="bg-white px-0 py-3 flex items-center justify-between border-t border-gray-200"
+    >
+      <div class="flex-1 flex justify-between">
+        <template v-if="prev">
+          <router-link
+            :to="'/posts/' + prev.slug"
+            class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
+          >
+            Prev:{{ prev.title }}
+          </router-link>
+        </template>
+        <template v-else>
+          <span
+            class="relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-md"
+          ></span>
+        </template>
+        <template v-if="next">
+          <router-link
+            v-if="next"
+            :to="'/posts/' + next.slug"
+            class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
+          >
+            Next:{{ next.title }}
+          </router-link>
+        </template>
+        <template v-else>
+          <span
+            class="relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-md"
+          ></span>
+        </template>
+      </div>
+    </div>
   </article>
 </template>
 
 <script lang="js">
 export default {
   async asyncData({ $content, params }) {
-    const content = $content;
     const posts = await $content('posts', params.slug || 'index').fetch()
-    return { posts ,params,content}
+    const [prev, next] = await $content('posts'|| 'index')
+      .only(['title', 'slug'])
+      .sortBy('createdAt', 'asc')
+      .surround(params.slug)
+      .fetch()
+    return { posts ,prev, next}
   },
   head () {
     return {
