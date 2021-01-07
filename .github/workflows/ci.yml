@@ -43,9 +43,12 @@ jobs:
 
       - name: Install dependencies 👨🏻‍💻
         run: yarn
+        
+      - name: generate
+        run: npm run generate
 
-      - name: Run linter 👀
-        run: yarn lint
-
-      - name: Run tests 🧪
-        run: yarn test
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
