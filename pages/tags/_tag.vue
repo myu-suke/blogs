@@ -40,9 +40,9 @@
 <script>
 export default {
   async asyncData({ $content, params }) {
-    const query = await $content('posts' || 'index').limit(15)
+    const query = await $content('posts' || 'index')
     const posts = await query.fetch()
-    const tag = params.tag === '' ? params.tag : 'all'
+    const tag = params.tag !== '' ? params.tag : 'all'
 
     const filterPost =
       tag !== 'all' ? posts : posts.filter((p) => p.tags.includes(tag))
