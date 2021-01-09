@@ -1,7 +1,9 @@
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
-
+  router: {
+    base: '/blogs/',
+  },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'blogs',
@@ -11,7 +13,7 @@ export default {
       { hid: 'description', name: 'description', content: '' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/blogs/favicon.ico' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
       {
         rel: 'stylesheet',
