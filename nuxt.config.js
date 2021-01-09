@@ -49,7 +49,11 @@ export default {
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
   ],
-
+  pwa: {
+    manifest: {
+      name: 'myu-suke Weblog', // アプリの名前
+    }
+  },
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {},
 
