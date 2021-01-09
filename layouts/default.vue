@@ -1,15 +1,19 @@
 <template>
-  <div>
+  <div class="flex flex-col min-h-screen box-border">
     <mheader />
-    <Nuxt />
+    <Nuxt class="flex-1" />
+    <mfooter />
   </div>
 </template>
 
 <script>
 import mheader from '~/components/mheader'
+import mfooter from '~/components/mfooter'
+
 export default {
   components: {
     mheader,
+    mfooter,
   },
 }
 </script>
