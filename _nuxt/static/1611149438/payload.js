@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/", {data:[{tags:["content","nuxt","pwa","runtimeCaching"]}],fetch:[],mutations:void 0});
