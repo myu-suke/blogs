@@ -52,7 +52,24 @@ export default {
   pwa: {
     manifest: {
       name: 'myu-suke Weblog', // アプリの名前
-    }
+    },
+    workbox: {
+      runtimeCaching: [
+        {
+          urlPattern: '/blogs/posts.*',
+          handler: 'NetworkFirst',
+          method: 'GET',
+          strategyOptions: {
+            cacheExpiration: {
+              maxAgeSeconds: 60 * 60 * 24, // 1日
+            },
+            cacheableResponse: {
+              statuses: [200],
+            },
+          },
+        },
+      ],
+    },
   },
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {},
