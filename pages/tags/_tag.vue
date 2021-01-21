@@ -8,7 +8,7 @@
           タグ：{{ $route.params.tag }}一覧
         </h1>
       </div>
-      <div class="flex flex-wrap -m-4">
+      <div class="flex flex-wrap m-4">
         <template v-for="n in filterPost">
           <div :key="n.slug" class="lg:w-1/3 sm:w-1/2 p-4">
             <router-link :to="'/posts/' + n.slug">
@@ -42,10 +42,8 @@ export default {
   async asyncData({ $content, params }) {
     const query = await $content('posts' || 'index')
     const posts = await query.fetch()
-    const tag = params.tag !== '' ? params.tag : 'all'
-
-    const filterPost =
-      tag !== 'all' ? posts : posts.filter((p) => p.tags.includes(tag))
+    const tag = params.tag
+    const filterPost = posts.filter((p) => p.tags.includes(tag))
     return { filterPost }
   },
   head() {

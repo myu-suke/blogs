@@ -9,19 +9,19 @@
         <li>
           <router-link
             to="/posts"
-            class="inline-block py-2 px-3 text-gray-400 hover:text-gray-100 no-underline"
+            class="inline-block py-2 px-3 text-gray-300 hover:text-gray-100 no-underline"
             >Posts</router-link
           >
         </li>
         <li>
           <router-link
             to="/tags"
-            class="inline-block py-2 px-3 text-gray-400 hover:text-gray-100 no-underline"
+            class="inline-block py-2 px-3 text-gray-300 hover:text-gray-100 no-underline"
             >Tags</router-link
           >
         </li>
       </ul>
-      <p class="inline-block py-2 px-3 text-gray-500 text-xs">©myu-ske.</p>
+      <p class="inline-block py-2 px-3 text-gray-400 text-xs">©myu-ske.</p>
     </div>
   </footer>
 </template>

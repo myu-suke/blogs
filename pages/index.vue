@@ -47,31 +47,35 @@
         <div
           class="w-full sm:w-3/4 px-6 sm:px-0 pt-6 text-left flex flex-col justify-center"
         >
-          <h2 class="text-2xl">タグ検索</h2>
-          <p class="">気になるタグを入力して検索</p>
-          <div class="max-w-sm mt-4 sm:flex">
-            <input
-              v-model="tag"
-              type="text"
-              class="block w-full focus:outline-0 bg-white py-3 px-6 mb-2 sm:mb-0"
-              name="tags"
-              list="tag-list"
-              placeholder="ex) javascript"
-              required="false"
-            />
-            <datalist id="tag-list">
-              <template v-for="t in tags">
-                <option :key="t">{{ t }}</option>
-              </template>
-            </datalist>
-            <router-link
-              :to="'/tags/' + tag"
-              tag="button"
-              class="bg-black hover:bg-gray-900 text-white hover:text-white py-3 px-6 uppercase text-xs tracking-wide whitespace-nowrap"
-            >
-              タグ検索
-            </router-link>
-          </div>
+          <form @submit.prevent="$router.push({ path: `/tags/${tag}` })">
+            <label>
+              <h2 class="text-2xl">タグ検索</h2>
+              <p class="">気になるタグを入力して検索</p>
+              <div class="max-w-sm mt-4 sm:flex">
+                <input
+                  v-model="tag"
+                  type="text"
+                  class="block w-full focus:outline-0 bg-white py-3 px-6 mb-2 sm:mb-0"
+                  name="tags"
+                  list="tag-list"
+                  placeholder="ex) javascript"
+                  required="false"
+                />
+                <datalist id="tag-list">
+                  <template v-for="t in tags">
+                    <option :key="t">{{ t }}</option>
+                  </template>
+                </datalist>
+                <router-link
+                  :to="'/tags/' + tag"
+                  tag="button"
+                  class="bg-black hover:bg-gray-900 text-white hover:text-white py-3 px-6 uppercase text-xs tracking-wide whitespace-nowrap"
+                >
+                  タグ検索
+                </router-link>
+              </div>
+            </label>
+          </form>
         </div>
       </div>
     </section>

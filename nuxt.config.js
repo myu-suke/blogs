@@ -68,7 +68,21 @@ export default {
             },
           },
         },
+        {
+          urlPattern: '/blogs/tags/.*',
+          handler: 'NetworkFirst',
+          method: 'GET',
+          strategyOptions: {
+            cacheExpiration: {
+              maxAgeSeconds: 60 * 60 * 24, // 1日
+            },
+            cacheableResponse: {
+              statuses: [200],
+            },
+          },
+        },
       ],
+
     },
   },
   // Content module configuration (https://go.nuxtjs.dev/config-content)
