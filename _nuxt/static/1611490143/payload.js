@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/", {data:[{tags:["Vue.js","content","javascript","nuxt","pwa","runtimeCaching","toLocaleString"]}],fetch:[],mutations:void 0});
