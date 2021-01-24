@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/", {data:[{tags:["content","javascript","nuxt","pwa","runtimeCaching","toLocaleStrin"]}],fetch:[],mutations:void 0});
